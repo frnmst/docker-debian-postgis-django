@@ -20,7 +20,11 @@ An image to be used for the first stage of Django projects that use PostGIS and 
 
 ## Description
 
-TODO
+This repository contains a dockerfile and a compose file used to install some basic
+system dependencies for Django, PostgreSQL and PostGIS.
+
+The image used in other project for PostgreSQL,
+along this one, is [kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/)
 
 ## Import in another project
 
