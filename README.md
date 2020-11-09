@@ -2,9 +2,71 @@
 
 An image to be used for the first stage of Django projects that use PostGIS and Debian.
 
+## Table of contents
+
+<!--TOC-->
+
+- [docker-debian-postgis-django](#docker-debian-postgis-django)
+  - [Table of contents](#table-of-contents)
+  - [Description](#description)
+  - [Import in another project](#import-in-another-project)
+    - [Build the image directly](#build-the-image-directly)
+    - [Build via git](#build-via-git)
+  - [Dependencies](#dependencies)
+  - [License](#license)
+  - [Trusted source](#trusted-source)
+
+<!--TOC-->
+
 ## Description
 
 TODO
+
+## Import in another project
+
+### Build the image directly
+
+1. clone this repository
+2. run `docker-compose build`
+3. add this to the docker compose file of your project:
+
+```
+services:
+    dependencies:
+        image: docker_debian_postgis_django
+
+    # The main service of you project.
+    main:
+
+        ...
+
+        depends_on:
+            - dependencies
+            - ...
+```
+
+### Build via git
+
+1. add this to the docker compose file of your project:
+
+```
+services:
+
+    dependencies:
+        image: docker_debian_postgis_django
+        build:
+            context: https://github.com/frnmst/docker-debian-postgis-django.git
+            dockerfile: Dockerfile
+
+    # The main service of you project.
+    main:
+
+        ...
+
+        depends_on:
+            - dependencies
+            - ...
+```
 
 ## Dependencies
 
