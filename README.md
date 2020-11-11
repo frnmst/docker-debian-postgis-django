@@ -9,6 +9,7 @@ An image to be used for the first stage of Django projects that use PostGIS and 
 - [docker-debian-postgis-django](#docker-debian-postgis-django)
   - [Table of contents](#table-of-contents)
   - [Description](#description)
+    - [Database](#database)
   - [Import in another project](#import-in-another-project)
     - [Build the image directly](#build-the-image-directly)
     - [Build via git](#build-via-git)
@@ -23,8 +24,17 @@ An image to be used for the first stage of Django projects that use PostGIS and 
 This repository contains a dockerfile and a compose file used to install some basic
 system dependencies for Django, PostgreSQL and PostGIS.
 
-The image used in other project for PostgreSQL,
-along this one, is [kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/)
+### Database
+
+You have various options here. The only requirement is that you use PostgreSQL with
+the PostGIS extension enabled.
+
+These are the tested images:
+
+| Image name | Full image name | Repository |
+|------------|-----------------|------------|
+| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:12-3.0-alpine | https://github.com/postgis/docker-postgis |
+| [kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/) | kartoza/postgis:12.1 | https://github.com/kartoza/docker-postgis |
 
 ## Import in another project
 
