@@ -14,6 +14,7 @@ An image to be used for the first stage of Django projects that use PostGIS and 
     - [Build the image directly](#build-the-image-directly)
     - [Build via git](#build-via-git)
   - [Dependencies](#dependencies)
+    - [Version pinning](#version-pinning)
   - [License](#license)
   - [Trusted source](#trusted-source)
 
@@ -93,6 +94,13 @@ services:
 | postgis              | postgres extension                     | dev, prod  |
 | postgresql-client    | poll database availability with `psql` | dev, prod  |
 
+### Version pinning
+
+Version pinning should improve reproducibility. Since version `0.0.3` the Dockerfile in this project
+uses pinned Debian packages.
+
+If you have a Debian installation you can run `# apt-get update && apt policy ${package_name}` to find
+out the current software versions of the dependencies.
 
 ## License
 
