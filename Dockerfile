@@ -19,7 +19,7 @@
 # along with django-futils.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-FROM python:3.8.5-buster AS base
+FROM python:3.9.0-buster AS base
 
 # Unbuffered output.
 ENV PYTHONUNBUFFERED 1
@@ -29,6 +29,10 @@ WORKDIR /code
 COPY ./poll_postgres.sh /code/
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends graphviz libgraphviz-dev postgis gettext postgresql-client \
+    && apt-get install -y --no-install-recommends \
+        graphviz=2.40.1-6 \
+        libgraphviz-dev=2.40.1-6 \
+        gettext=0.19.8.1-9 \
+        postgresql-client=11+200+deb10u4 \
+        postgis=2.5.1+dfsg-1 \
     && rm -rf /var/cache/apt /var/lib/apt/lists/*
-
