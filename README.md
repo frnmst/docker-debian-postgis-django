@@ -63,7 +63,8 @@ services:
 
 ### Build via git
 
-1. add this to the docker compose file of your project:
+1. add this to the docker compose file of your project, where `${VERSION}` may correspond to
+   a git tag such as `0.0.3`:
 
 ```
 services:
@@ -71,7 +72,7 @@ services:
     dependencies:
         image: docker_debian_postgis_django
         build:
-            context: https://github.com/frnmst/docker-debian-postgis-django.git
+            context: https://github.com/frnmst/docker-debian-postgis-django.git#${VERSION}
             dockerfile: Dockerfile
 
     # The main service of you project.
