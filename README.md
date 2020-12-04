@@ -87,13 +87,13 @@ services:
 
 ## Dependencies
 
-| Dependency name      | Purpose                                | Build type |
-| ---------------------|----------------------------------------|------------|
-| gettext              | translations                           | dev, prod  |
-| graphviz             | database schema                        | dev        |
-| libgraphviz-dev      | database schema                        | dev        |
-| postgis              | postgres extension                     | dev, prod  |
-| postgresql-client    | poll database availability with `psql` | dev, prod  |
+Software                                           | Dependency name      | Purpose                                | Build type |
+---------------------------------------------------|----------------------|----------------------------------------|------------|
+| [gettext](https://www.gnu.org/software/gettext/) | gettext              | translations                           | dev, prod  |
+| [Graphviz](https://www.graphviz.org/)            | graphviz             | database schema                        | dev        |
+| [Graphviz](https://www.graphviz.org/)            | libgraphviz-dev      | database schema                        | dev        |
+| [Postgis](https://postgis.net/)                  | postgis              | postgres extension                     | dev, prod  |
+| [PostgreSQL](https://www.postgresql.org/)        | postgresql-client    | poll database availability with `psql` | dev, prod  |
 
 ### Version pinning
 
