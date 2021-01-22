@@ -84,6 +84,11 @@ services:
             - ...
 ```
 
+Note: adding the usual `dockerfile: Dockerfile` key under `build` leads to this error:
+
+    unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat /tmp/docker-build-git352150547/https:: no such file or directory
+    ERROR: Service 'dependencies' failed to build
+
 ## Dependencies
 
 Software                                           | Dependency name      | Purpose                                | Build type |
