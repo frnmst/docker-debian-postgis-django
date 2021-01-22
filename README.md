@@ -34,9 +34,9 @@ These are the tested images:
 
 | Image name | Full image name | Repository | docker-debian-postgis-django versions |
 |------------|-----------------|------------|---------------------------------------|
-| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:12-3.0-alpine | https://github.com/postgis/docker-postgis | `0.0.1`, `0.0.2` |
-| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:13-3.0 | https://github.com/postgis/docker-postgis | `0.0.2`, `0.0.3` |
 | [kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/) | kartoza/postgis:12.1 | https://github.com/kartoza/docker-postgis | `0.0.1`, `0.0.2` |
+| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:12-3.0-alpine | https://github.com/postgis/docker-postgis | `0.0.1`, `0.0.2` |
+| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:13-3.1 | https://github.com/postgis/docker-postgis | `0.0.4` |
 
 ## Import in another project
 
@@ -73,7 +73,6 @@ services:
         image: docker_debian_postgis_django
         build:
             context: https://github.com/frnmst/docker-debian-postgis-django.git#${VERSION}
-            dockerfile: Dockerfile
 
     # The main service of you project.
     main:
