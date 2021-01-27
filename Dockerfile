@@ -19,15 +19,15 @@
 # along with docker-debian-postgis-django.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-FROM python:3.9.0-buster AS base
+FROM python:3.9.1-buster AS base
 
 # Unbuffered output.
 ENV PYTHONUNBUFFERED 1
 
 RUN mkdir /code
 WORKDIR /code
-COPY ./poll_postgres.sh /code/
 
+COPY ./utils/ /code/utils
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         graphviz=2.40.1-6 \

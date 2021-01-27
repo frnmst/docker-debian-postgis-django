@@ -11,8 +11,11 @@ An image to be used for the first stage of Django projects that use PostGIS and 
   - [Description](#description)
     - [Database](#database)
   - [Import in another project](#import-in-another-project)
-    - [Build the image directly](#build-the-image-directly)
-    - [Build via git](#build-via-git)
+    - [Build](#build)
+      - [Build the image directly](#build-the-image-directly)
+      - [Build via git](#build-via-git)
+    - [Dockerfile](#dockerfile)
+    - [Continuous integration](#continuous-integration)
   - [Dependencies](#dependencies)
     - [Version pinning](#version-pinning)
   - [License](#license)
@@ -40,7 +43,9 @@ These are the tested images:
 
 ## Import in another project
 
-### Build the image directly
+### Build
+
+#### Build the image directly
 
 1. clone this repository
 2. run `docker-compose build`
@@ -61,7 +66,7 @@ services:
             - ...
 ```
 
-### Build via git
+#### Build via git
 
 1. add this to the docker compose file of your project, where `${VERSION}` may correspond to
    a git tag such as `0.0.3`:
@@ -88,6 +93,34 @@ Note: adding the usual `dockerfile: Dockerfile` key under `build` leads to this 
 
     unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat /tmp/docker-build-git352150547/https:: no such file or directory
     ERROR: Service 'dependencies' failed to build
+
+### Dockerfile
+
+Add this line as the first instruction in the Dockerfile:
+
+    FROM docker_debian_postgis_django as builder
+
+Add this as the the last `COPY` instruction in the Dockerfile:
+
+    COPY --from=docker_debian_postgis_django /code/utils /code/utils
+
+### Continuous integration
+
+The `./ci.sh` script is intendend to get reproducible build for development and production environments.
+
+Select one of the two environments:
+
+::
+
+    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+
+You can use `Jenkins <https://jenkins.io>`_ for these tasks.
+In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
+
+.. warning: The ``SECRET_SETTINGS.py`` file is replaced by ``SECRET_SETTINGS.dist.py`` file once you run the script.
+
+See also https://stackoverflow.com/a/49669361
 
 ## Dependencies
 
