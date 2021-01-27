@@ -2,7 +2,7 @@
 #
 # Makefile
 #
-# Copyright (C) 2017-2021 frnmst (Franco Masotti) <franco.masotti@live.com>
+# Copyright (C) 2020-2021 frnmst (Franco Masotti) <franco.masotti@live.com>
 #
 # This file is part of docker-debian-postgis-django.
 #
