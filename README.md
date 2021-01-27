@@ -17,7 +17,9 @@ An image to be used for the first stage of Django projects that use PostGIS and 
     - [Dockerfile](#dockerfile)
     - [Continuous integration](#continuous-integration)
   - [Dependencies](#dependencies)
-    - [Version pinning](#version-pinning)
+    - [Dockerfile](#dockerfile-1)
+      - [Version pinning](#version-pinning)
+    - [CI commands](#ci-commands)
   - [License](#license)
   - [Trusted source](#trusted-source)
 
@@ -39,7 +41,7 @@ These are the tested images:
 |------------|-----------------|------------|---------------------------------------|
 | [kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/) | kartoza/postgis:12.1 | https://github.com/kartoza/docker-postgis | `0.0.1`, `0.0.2` |
 | [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:12-3.0-alpine | https://github.com/postgis/docker-postgis | `0.0.1`, `0.0.2` |
-| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:13-3.1 | https://github.com/postgis/docker-postgis | `0.0.4` |
+| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:13-3.1 | https://github.com/postgis/docker-postgis | `0.0.4` `1.0.0` |
 
 ## Import in another project
 
@@ -111,7 +113,7 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 Select one of the two environments:
 
     curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
-    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
@@ -122,21 +124,31 @@ See also https://stackoverflow.com/a/49669361
 
 ## Dependencies
 
-Software                                           | Dependency name      | Purpose                                | Build type |
----------------------------------------------------|----------------------|----------------------------------------|------------|
+### Dockerfile
+
+| Software                                         | Dependency name      | Purpose                                | Build type |
+|--------------------------------------------------|----------------------|----------------------------------------|------------|
 | [gettext](https://www.gnu.org/software/gettext/) | gettext              | translations                           | dev, prod  |
 | [Graphviz](https://www.graphviz.org/)            | graphviz             | database schema                        | dev        |
 | [Graphviz](https://www.graphviz.org/)            | libgraphviz-dev      | database schema                        | dev        |
 | [Postgis](https://postgis.net/)                  | postgis              | postgres extension                     | dev, prod  |
 | [PostgreSQL](https://www.postgresql.org/)        | postgresql-client    | poll database availability with `psql` | dev, prod  |
 
-### Version pinning
+#### Version pinning
 
 Version pinning should improve reproducibility. Since version `0.0.3` the Dockerfile in this project
 uses pinned Debian packages.
 
 If you have a Debian installation you can run `# apt-get update && apt policy ${package_name}` to find
 out the current software versions of the dependencies.
+
+### CI commands
+
+| Software                                                 | Build type |
+|----------------------------------------------------------|------------|
+| [cURL](https://curl.se/)                                 | dev, prod  |
+| [GNU Coreutils](https://www.gnu.org/software/coreutils/) | dev, prod  |
+| [GNU Bash](https://www.gnu.org/software/bash/)           | dev, prod  |
 
 ## License
 
