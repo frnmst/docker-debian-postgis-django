@@ -112,8 +112,8 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
-    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
