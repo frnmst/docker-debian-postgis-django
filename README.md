@@ -110,15 +110,13 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-::
-
     curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
     curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
 
-.. warning: The ``SECRET_SETTINGS.py`` file is replaced by ``SECRET_SETTINGS.dist.py`` file once you run the script.
+Warning: The `SECRET_SETTINGS.py` file is replaced by `SECRET_SETTINGS.dist.py` file once you run the script.
 
 See also https://stackoverflow.com/a/49669361
 
