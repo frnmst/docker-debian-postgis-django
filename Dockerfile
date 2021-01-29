@@ -24,10 +24,15 @@ FROM python:3.9.1-buster AS base
 # Unbuffered output.
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /code
-WORKDIR /code
+# Pass the running user and group.
+ARG UID
+ARG GID
 
-COPY ./utils/ /code/utils
+RUN mkdir /code
+
+RUN groupadd -g $GID -r django && useradd -s /bin/bash --home-dir /code -u $UID -r -g django django && mkdir /code/django
+WORKDIR /code/django
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         graphviz=2.40.1-6 \
@@ -36,3 +41,6 @@ RUN apt-get update \
         postgresql-client=11+200+deb10u4 \
         postgis=2.5.1+dfsg-1 \
     && rm -rf /var/cache/apt /var/lib/apt/lists/*
+
+RUN chmod 700 /code && chown django:django /code && chown django:django /code/django
+COPY --chown=django:django ./utils/ /code/django/utils

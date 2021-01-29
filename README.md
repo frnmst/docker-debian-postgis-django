@@ -50,7 +50,7 @@ These are the tested images:
 #### Build the image directly
 
 1. clone this repository
-2. run `docker-compose build`
+2. run `docker-compose build  --build-arg GID=$(id -g) --build-arg UID=$(id -u)`
 3. add this to the docker compose file of your project:
 
 ```
