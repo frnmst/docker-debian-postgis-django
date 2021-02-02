@@ -17,10 +17,12 @@ An image to be used for the first stage of Django projects that use PostGIS and 
     - [Dockerfile](#dockerfile)
     - [Continuous integration](#continuous-integration)
     - [The Makefile](#the-makefile)
+      - [Variables](#variables)
   - [Dependencies](#dependencies)
     - [Dockerfile](#dockerfile-1)
       - [Version pinning](#version-pinning)
-    - [CI commands](#ci-commands)
+  - [ci.sh](#cish)
+    - [ci.sh download script](#cish-download-script)
     - [Makefile download script](#makefile-download-script)
   - [License](#license)
   - [Trusted source](#trusted-source)
@@ -138,6 +140,16 @@ curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/maste
     && [ "$(sha512sum Makefile | awk '{print $1}')" = 'af67596cac88c704aea66baeaff1deb833293772d191d0f2ec69b0662dcf0495787d63c5a9eed550850dcee89aa08be27d19da233648ade2b8d9acabdf4f9128' ] && echo "OK" || rm Makefile
 ```
 
+#### Variables
+
+To be able to call `make` you must create a `.env` file in the project root with these variables (example from [django-futils](https://github.com/frnmst/django-futils))
+
+    PACKAGE_NAME=django_futils
+    APP_NAME=django_futils
+    MODELS=default_models.py
+    SERVE_DEV_PORT=3050
+    AUTH_MODULE=django.contrib.auth
+
 ## Dependencies
 
 ### Dockerfile
@@ -158,21 +170,34 @@ uses pinned Debian packages.
 If you have a Debian installation you can run `# apt-get update && apt policy ${package_name}` to find
 out the current software versions of the dependencies.
 
-### CI commands
+## ci.sh
 
 | Software                                                 | Build type |
 |----------------------------------------------------------|------------|
 | [cURL](https://curl.se/)                                 | dev, prod  |
+| [docker-compose](https://docs.docker.com/compose/)       | dev, prod  |
 | [GNU Coreutils](https://www.gnu.org/software/coreutils/) | dev, prod  |
 | [GNU Bash](https://www.gnu.org/software/bash/)           | dev, prod  |
+| [GNU Make](https://www.gnu.org/software/make/)           | dev, prod  |
+| [Python 3](https://www.python.org/)                      | dev, prod  |
+
+
+### ci.sh download script
+
+| Software                                                 |
+|----------------------------------------------------------|
+| [cURL](https://curl.se/)                                 |
+| [GNU Coreutils](https://www.gnu.org/software/coreutils/) |
+| [GNU Bash](https://www.gnu.org/software/bash/)           |
+| [GNU awk](https://www.gnu.org/software/gawk/)            |
 
 ### Makefile download script
 
-| Software                                                 | Build type |
-|----------------------------------------------------------|------------|
-| [cURL](https://curl.se/)                                 | dev, prod  |
-| [GNU Coreutils](https://www.gnu.org/software/coreutils/) | dev, prod  |
-| [GNU Bash](https://www.gnu.org/software/bash/)           | dev, prod  |
+| Software                                                 |
+|----------------------------------------------------------|
+| [cURL](https://curl.se/)                                 |
+| [GNU Coreutils](https://www.gnu.org/software/coreutils/) |
+| [GNU Bash](https://www.gnu.org/software/bash/)           |
 
 ## License
 
