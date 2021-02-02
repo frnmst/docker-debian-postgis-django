@@ -22,6 +22,8 @@
 
 set -euo pipefail
 
+MAKEFILE_CHECKSUM='af67596cac88c704aea66baeaff1deb833293772d191d0f2ec69b0662dcf0495787d63c5a9eed550850dcee89aa08be27d19da233648ade2b8d9acabdf4f9128'
+
 [ -n "${ENV}" ]
 
 # Prepare executables.
@@ -36,6 +38,8 @@ CURL=$(which curl)
 PYTHON3=$(which python3)
 DOCKER_COMPOSE=$(which docker-compose)
 MAKE=$(which make)
+AWK=$(which awk)
+SHA512SUM=$(which sha512sum)
 
 export BASE_CI_DIR=""$(pwd)"/ci"
 export PYENV_HOME=""${BASE_CI_DIR}"/python_env"
@@ -57,6 +61,9 @@ source "${PYENV_HOME}"/bin/activate
 ${CURL} https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 get-pip.py
 pip3 install pipenv
+
+${CURL} https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/Makefile.dist --output Makefile \
+    && [ "$(${SHA512SUM} Makefile | ${AWK} '{print $1}')" = "${MAKEFILE_CHECKSUM}" ]
 
 pipenv lock --requirements > requirements.txt
 if [ "${ENV}" = 'development' ]; then

@@ -21,9 +21,9 @@ An image to be used for the first stage of Django projects that use PostGIS and 
   - [Dependencies](#dependencies)
     - [Dockerfile](#dockerfile-1)
       - [Version pinning](#version-pinning)
-  - [ci.sh](#cish)
+    - [ci.sh](#cish)
     - [ci.sh download script](#cish-download-script)
-    - [Makefile download script](#makefile-download-script)
+    - [Madefile.dist download script](#madefiledist-download-script)
   - [License](#license)
   - [Trusted source](#trusted-source)
 
@@ -116,8 +116,8 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
-    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '762e4436bd3816e62a41a7ce202493d71a4ca25ee557f7799ea43b780567ea57aa9edfdbd13bacd09ba1e86cb1a81d235735481de0179c870994df08e686a771' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'da47427189d3dd70280598f24df732a1b251121e102b75b703fb3b80ee03408a6a6cd73f744b31807223b7808374df16380a2f06b6a3da03c80362eeee60aca2' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'da47427189d3dd70280598f24df732a1b251121e102b75b703fb3b80ee03408a6a6cd73f744b31807223b7808374df16380a2f06b6a3da03c80362eeee60aca2' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
@@ -131,11 +131,9 @@ See also https://stackoverflow.com/a/49669361
 You can import `Makefile.dist` in a project to use all setup operations without typing them manually.
 [django-futils](https://github.com/frnmst/django-futils) for example uses this method.
 
-You can create a download script like this in your project:
+Run this manually or create a download script called in your project:
 
 ```
-#!/usr/bin/env bash
-
 curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/Makefile.dist --output Makefile \
     && [ "$(sha512sum Makefile | awk '{print $1}')" = 'af67596cac88c704aea66baeaff1deb833293772d191d0f2ec69b0662dcf0495787d63c5a9eed550850dcee89aa08be27d19da233648ade2b8d9acabdf4f9128' ] && echo "OK" || rm Makefile
 ```
@@ -170,7 +168,7 @@ uses pinned Debian packages.
 If you have a Debian installation you can run `# apt-get update && apt policy ${package_name}` to find
 out the current software versions of the dependencies.
 
-## ci.sh
+### ci.sh
 
 | Software                                                 | Build type |
 |----------------------------------------------------------|------------|
@@ -181,7 +179,6 @@ out the current software versions of the dependencies.
 | [GNU Make](https://www.gnu.org/software/make/)           | dev, prod  |
 | [Python 3](https://www.python.org/)                      | dev, prod  |
 
-
 ### ci.sh download script
 
 | Software                                                 |
@@ -191,7 +188,7 @@ out the current software versions of the dependencies.
 | [GNU Bash](https://www.gnu.org/software/bash/)           |
 | [GNU awk](https://www.gnu.org/software/gawk/)            |
 
-### Makefile download script
+### Madefile.dist download script
 
 | Software                                                 |
 |----------------------------------------------------------|
