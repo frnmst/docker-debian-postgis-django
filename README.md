@@ -16,6 +16,7 @@ An image to be used for the first stage of Django projects that use PostGIS and 
       - [Build via git](#build-via-git)
     - [Dockerfile](#dockerfile)
     - [Continuous integration](#continuous-integration)
+    - [The Makefile](#the-makefile)
   - [Dependencies](#dependencies)
     - [Dockerfile](#dockerfile-1)
       - [Version pinning](#version-pinning)
@@ -121,6 +122,10 @@ In this case place the command under the *Build* -> *Execute shell* section of t
 Warning: The `SECRET_SETTINGS.py` file is replaced by `SECRET_SETTINGS.dist.py` file once you run the script.
 
 See also https://stackoverflow.com/a/49669361
+
+### The Makefile
+
+You can import `Makefile.dist` in a project to use all setup operations without typing them manually. [django-futils](https://github.com/frnmst/django-futils) for example uses this method.
 
 ## Dependencies
 
