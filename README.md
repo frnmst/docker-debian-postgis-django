@@ -21,6 +21,7 @@ An image to be used for the first stage of Django projects that use PostGIS and 
     - [Dockerfile](#dockerfile-1)
       - [Version pinning](#version-pinning)
     - [CI commands](#ci-commands)
+    - [Makefile download script](#makefile-download-script)
   - [License](#license)
   - [Trusted source](#trusted-source)
 
@@ -125,7 +126,17 @@ See also https://stackoverflow.com/a/49669361
 
 ### The Makefile
 
-You can import `Makefile.dist` in a project to use all setup operations without typing them manually. [django-futils](https://github.com/frnmst/django-futils) for example uses this method.
+You can import `Makefile.dist` in a project to use all setup operations without typing them manually.
+[django-futils](https://github.com/frnmst/django-futils) for example uses this method.
+
+You can create a download script like this in your project:
+
+```
+#!/usr/bin/env bash
+
+curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/Makefile.dist --output Makefile \
+    && [ "$(sha512sum Makefile | awk '{print $1}')" = 'af67596cac88c704aea66baeaff1deb833293772d191d0f2ec69b0662dcf0495787d63c5a9eed550850dcee89aa08be27d19da233648ade2b8d9acabdf4f9128' ] && echo "OK" || rm Makefile
+```
 
 ## Dependencies
 
@@ -148,6 +159,14 @@ If you have a Debian installation you can run `# apt-get update && apt policy ${
 out the current software versions of the dependencies.
 
 ### CI commands
+
+| Software                                                 | Build type |
+|----------------------------------------------------------|------------|
+| [cURL](https://curl.se/)                                 | dev, prod  |
+| [GNU Coreutils](https://www.gnu.org/software/coreutils/) | dev, prod  |
+| [GNU Bash](https://www.gnu.org/software/bash/)           | dev, prod  |
+
+### Makefile download script
 
 | Software                                                 | Build type |
 |----------------------------------------------------------|------------|
