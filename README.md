@@ -174,8 +174,9 @@ out the current software versions of the dependencies.
 |----------------------------------------------------------|------------|
 | [cURL](https://curl.se/)                                 | dev, prod  |
 | [docker-compose](https://docs.docker.com/compose/)       | dev, prod  |
-| [GNU Coreutils](https://www.gnu.org/software/coreutils/) | dev, prod  |
+| [GNU awk](https://www.gnu.org/software/gawk/)            | dev, prod  |
 | [GNU Bash](https://www.gnu.org/software/bash/)           | dev, prod  |
+| [GNU Coreutils](https://www.gnu.org/software/coreutils/) | dev, prod  |
 | [GNU Make](https://www.gnu.org/software/make/)           | dev, prod  |
 | [Python 3](https://www.python.org/)                      | dev, prod  |
 
@@ -184,17 +185,17 @@ out the current software versions of the dependencies.
 | Software                                                 |
 |----------------------------------------------------------|
 | [cURL](https://curl.se/)                                 |
+| [GNU awk](https://www.gnu.org/software/gawk/)            |
 | [GNU Coreutils](https://www.gnu.org/software/coreutils/) |
 | [GNU Bash](https://www.gnu.org/software/bash/)           |
-| [GNU awk](https://www.gnu.org/software/gawk/)            |
 
 ### Madefile.dist download script
 
 | Software                                                 |
 |----------------------------------------------------------|
 | [cURL](https://curl.se/)                                 |
-| [GNU Coreutils](https://www.gnu.org/software/coreutils/) |
 | [GNU Bash](https://www.gnu.org/software/bash/)           |
+| [GNU Coreutils](https://www.gnu.org/software/coreutils/) |
 
 ## License
 
