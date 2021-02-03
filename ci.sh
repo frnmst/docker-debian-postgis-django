@@ -71,12 +71,12 @@ if [ "${ENV}" = 'development' ]; then
 fi
 
 if [ "${ENV}" = 'development' ]; then
-    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=development
+    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=development --build-arg GID=$(id -g) --build-arg UID=$(id -u)
 
     # Do not enable named volumes and delete anonymous volumes when finished.
     ${DOCKER_COMPOSE} --file docker-compose.yml --file docker/docker-compose.debug.yml --file docker/docker-compose.init_dev.yml --file docker/docker-compose.db_name_dev.yml up --always-recreate-deps --renew-anon-volumes --abort-on-container-exit --exit-code-from web web
 else
-    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=production
+    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=production --build-arg GID=$(id -g) --build-arg UID=$(id -u)
 
     # Do not enable named volumes and delete anonymous volumes when finished.
     ${DOCKER_COMPOSE} --file docker-compose.yml --file docker/docker-compose.no_debug.yml --file docker/docker-compose.init_prod.yml --file docker/docker-compose.db_name_prod.yml up --always-recreate-deps --renew-anon-volumes --abort-on-container-exit --exit-code-from web web
