@@ -21,17 +21,11 @@
 
 FROM python:3.9.1-buster AS base
 
-# Unbuffered output.
-ENV PYTHONUNBUFFERED 1
-
 # Pass the running user and group.
 ARG UID
 ARG GID
 
-RUN mkdir /code
-
-RUN groupadd -g $GID -r django && useradd -s /bin/bash --home-dir /code -u $UID -r -g django django && mkdir /code/django
-WORKDIR /code/django
+RUN groupadd -g $GID -r django && useradd --create-home -s /bin/bash --home-dir /code -u $UID -r -g django django && mkdir /code/django
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
