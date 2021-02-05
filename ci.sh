@@ -40,6 +40,7 @@ DOCKER_COMPOSE=$(which docker-compose)
 MAKE=$(which make)
 AWK=$(which awk)
 SHA512SUM=$(which sha512sum)
+ID=$(which id)
 
 export BASE_CI_DIR=""$(pwd)"/ci"
 export PYENV_HOME=""${BASE_CI_DIR}"/python_env"
@@ -71,12 +72,12 @@ if [ "${ENV}" = 'development' ]; then
 fi
 
 if [ "${ENV}" = 'development' ]; then
-    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=development --build-arg GID=$(id -g) --build-arg UID=$(id -u)
+    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=development --build-arg GID=$(${ID} -g) --build-arg UID=$(${ID} -u)
 
     # Do not enable named volumes and delete anonymous volumes when finished.
     ${DOCKER_COMPOSE} --file docker-compose.yml --file docker/docker-compose.debug.yml --file docker/docker-compose.init_dev.yml --file docker/docker-compose.db_name_dev.yml up --always-recreate-deps --renew-anon-volumes --abort-on-container-exit --exit-code-from web web
 else
-    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=production --build-arg GID=$(id -g) --build-arg UID=$(id -u)
+    ${DOCKER_COMPOSE} build --force-rm --no-cache --memory=2GB --build-arg DJANGO_ENV=production --build-arg GID=$(${ID} -g) --build-arg UID=$(${ID} -u)
 
     # Do not enable named volumes and delete anonymous volumes when finished.
     ${DOCKER_COMPOSE} --file docker-compose.yml --file docker/docker-compose.no_debug.yml --file docker/docker-compose.init_prod.yml --file docker/docker-compose.db_name_prod.yml up --always-recreate-deps --renew-anon-volumes --abort-on-container-exit --exit-code-from web web
