@@ -19,7 +19,7 @@
 # along with docker-debian-postgis-django.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-FROM python:3.9.1-buster AS base
+FROM python:3.9.2-buster AS base
 
 # Pass the running user and group.
 ARG UID

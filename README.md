@@ -45,7 +45,7 @@ These are the tested images:
 |------------|-----------------|------------|---------------------------------------|
 | [kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/) | kartoza/postgis:12.1 | https://github.com/kartoza/docker-postgis | `0.0.1`, `0.0.2` |
 | [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:12-3.0-alpine | https://github.com/postgis/docker-postgis | `0.0.1`, `0.0.2` |
-| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:13-3.1 | https://github.com/postgis/docker-postgis | `0.0.4` `1.0.0` |
+| [postgis/postgis](https://hub.docker.com/r/postgis/postgis/) | postgis/postgis:13-3.1 | https://github.com/postgis/docker-postgis | `0.0.4` `1.0.0` `1.0.1` |
 
 ## Import in another project
 
@@ -83,7 +83,7 @@ services:
     dependencies:
         image: docker_debian_postgis_django
         build:
-            context: https://github.com/frnmst/docker-debian-postgis-django.git#${VERSION}
+            context: https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django.git#${VERSION}
 
     # The main service of you project.
     main:
@@ -116,8 +116,8 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '2903f3c083b726f949967d25e16a9576a315a148d95e261d0ac1ce8069a3da473ac623ef1d91511bcdaaae662f6ce55a10e5b269e93b3090ec3f493f060b9c53' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
-    curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '2903f3c083b726f949967d25e16a9576a315a148d95e261d0ac1ce8069a3da473ac623ef1d91511bcdaaae662f6ce55a10e5b269e93b3090ec3f493f060b9c53' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '2903f3c083b726f949967d25e16a9576a315a148d95e261d0ac1ce8069a3da473ac623ef1d91511bcdaaae662f6ce55a10e5b269e93b3090ec3f493f060b9c53' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '2903f3c083b726f949967d25e16a9576a315a148d95e261d0ac1ce8069a3da473ac623ef1d91511bcdaaae662f6ce55a10e5b269e93b3090ec3f493f060b9c53' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
@@ -129,18 +129,18 @@ See also https://stackoverflow.com/a/49669361
 ### The Makefile
 
 You can import `Makefile.dist` in a project to use all setup operations without typing them manually.
-[django-futils](https://github.com/frnmst/django-futils) for example uses this method.
+[django-futils](https://software.franco.net.eu.org/frnmst/django-futils) for example uses this method.
 
 Run this manually or create a download script called in your project:
 
 ```
-curl https://raw.githubusercontent.com/frnmst/docker-debian-postgis-django/master/Makefile.dist --output Makefile \
+curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/Makefile.dist --output Makefile \
     && [ "$(sha512sum Makefile | awk '{print $1}')" = 'af67596cac88c704aea66baeaff1deb833293772d191d0f2ec69b0662dcf0495787d63c5a9eed550850dcee89aa08be27d19da233648ade2b8d9acabdf4f9128' ] && echo "OK" || rm Makefile
 ```
 
 #### Variables
 
-To be able to call `make` you must create a `.env` file in the project root with these variables (example from [django-futils](https://github.com/frnmst/django-futils))
+To be able to call `make` you must create a `.env` file in the project root with these variables (example from [django-futils](https://software.franco.net.eu.org/frnmst/django-futils))
 
     PACKAGE_NAME=django_futils
     APP_NAME=django_futils
@@ -218,4 +218,4 @@ along with docker-debian-postgis-django.  If not, see <http://www.gnu.org/licens
 
 You can check the authenticity of new releases using my public key.
 
-Instructions, sources and keys can be found at [frnmst.gitlab.io/software](https://frnmst.gitlab.io/software/).
+Instructions, sources and keys can be found at [blog.franco.net.eu.org/software](https://blog.franco.net.eu.org/software/).
