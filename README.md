@@ -23,7 +23,7 @@ An image to be used for the first stage of Django projects that use PostGIS and 
       - [Version pinning](#version-pinning)
     - [ci.sh](#cish)
     - [ci.sh download script](#cish-download-script)
-    - [Madefile.dist download script](#madefiledist-download-script)
+    - [Makefile.dist download script](#makefiledist-download-script)
   - [License](#license)
   - [Trusted source](#trusted-source)
 
@@ -189,7 +189,7 @@ out the current software versions of the dependencies.
 | [GNU Coreutils](https://www.gnu.org/software/coreutils/) |
 | [GNU Bash](https://www.gnu.org/software/bash/)           |
 
-### Madefile.dist download script
+### Makefile.dist download script
 
 | Software                                                 |
 |----------------------------------------------------------|
