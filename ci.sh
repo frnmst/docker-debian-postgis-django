@@ -22,7 +22,7 @@
 
 set -euo pipefail
 
-export MAKEFILE_BRANCH="${1}"
+export MAKEFILE_URL="${1}"
 export MAKEFILE_CHECKSUM="${2}"
 
 [ -n "${ENV}" ]
@@ -64,7 +64,7 @@ ${CURL} https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 get-pip.py
 pip3 install pipenv
 
-${CURL} https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/"${MAKEFILE_BRANCH}"/Makefile.dist --output Makefile \
+${CURL} "${MAKEFILE_URL}" --output Makefile \
     && [ "$(${SHA512SUM} Makefile | ${AWK} '{print $1}')" = "${MAKEFILE_CHECKSUM}" ]
 
 pipenv lock --requirements > requirements.txt
