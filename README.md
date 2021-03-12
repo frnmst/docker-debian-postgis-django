@@ -116,8 +116,8 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '2903f3c083b726f949967d25e16a9576a315a148d95e261d0ac1ce8069a3da473ac623ef1d91511bcdaaae662f6ce55a10e5b269e93b3090ec3f493f060b9c53' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
-    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '2903f3c083b726f949967d25e16a9576a315a148d95e261d0ac1ce8069a3da473ac623ef1d91511bcdaaae662f6ce55a10e5b269e93b3090ec3f493f060b9c53' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'aba8848770fbf22e5901b6ddb6770bb990608cff90e27751532abbee325ba4c3944ca2646e1af04bc4836a22de353f5db957b26e016748a4f877378a573c07d2' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh'
+    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'aba8848770fbf22e5901b6ddb6770bb990608cff90e27751532abbee325ba4c3944ca2646e1af04bc4836a22de353f5db957b26e016748a4f877378a573c07d2' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
