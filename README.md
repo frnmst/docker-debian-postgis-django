@@ -135,7 +135,7 @@ Run this manually or create a download script called in your project:
 
 ```
 curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/Makefile.dist --output Makefile \
-    && [ "$(sha512sum Makefile | awk '{print $1}')" = 'af67596cac88c704aea66baeaff1deb833293772d191d0f2ec69b0662dcf0495787d63c5a9eed550850dcee89aa08be27d19da233648ade2b8d9acabdf4f9128' ] && echo "OK" || rm Makefile
+    && [ "$(sha512sum Makefile | awk '{print $1}')" = '262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf' ] && echo "OK" || rm Makefile
 ```
 
 #### Variables
