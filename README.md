@@ -26,6 +26,7 @@ An image to be used for the first stage of Django projects that use PostGIS and 
     - [Makefile.dist download script](#makefiledist-download-script)
   - [License](#license)
   - [Trusted source](#trusted-source)
+  - [Crypto donations](#crypto-donations)
 
 <!--TOC-->
 
@@ -117,6 +118,7 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 Select one of the two environments:
 
     curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '7cda2f9c3962661a0856e4c86976e3aee57b5b4124070e135df7fb93f616f2ffaa4747dde0918424e505d8bb66064ac7352a005cdfab3c7439bf73da43c2dfbb' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf"'
+
     curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '7cda2f9c3962661a0856e4c86976e3aee57b5b4124070e135df7fb93f616f2ffaa4747dde0918424e505d8bb66064ac7352a005cdfab3c7439bf73da43c2dfbb' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf"'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
@@ -219,3 +221,9 @@ along with docker-debian-postgis-django.  If not, see <http://www.gnu.org/licens
 You can check the authenticity of new releases using my public key.
 
 Instructions, sources and keys can be found at [blog.franco.net.eu.org/software](https://blog.franco.net.eu.org/software/).
+
+## Crypto donations
+
+- Bitcoin: bc1qnkflazapw3hjupawj0lm39dh9xt88s7zal5mwu
+- Dogecoin: DMB5h2GhHiTNW7EcmDnqkYpKs6Da2wK3zP
+- Vertcoin: vtc1qd8n3jvkd2vwrr6cpejkd9wavp4ld6xfu9hkhh0
