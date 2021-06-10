@@ -29,8 +29,8 @@ RUN groupadd -g $GID -r django && useradd --create-home -s /bin/bash --home-dir 
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        graphviz=2.40.1-6 \
-        libgraphviz-dev=2.40.1-6 \
+        graphviz=2.40.1-6+deb10u1 \
+        libgraphviz-dev=2.40.1-6+deb10u1 \
         gettext=0.19.8.1-9 \
         postgresql-client=11+200+deb10u4 \
         postgis=2.5.1+dfsg-1 \
