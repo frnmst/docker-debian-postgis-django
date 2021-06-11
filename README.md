@@ -154,6 +154,8 @@ To be able to call `make` you must create a `.env` file in the project root with
 
 ### Dockerfile
 
+These dependencies are installed with the `RUN` command so there is no need to install them manually.
+
 | Software                                         | Dependency name      | Purpose                                | Build type |
 |--------------------------------------------------|----------------------|----------------------------------------|------------|
 | [gettext](https://www.gnu.org/software/gettext/) | gettext              | translations                           | dev, prod  |
