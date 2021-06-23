@@ -98,7 +98,7 @@ docker.up.dev.db:
 ## Build the image.
 docker.build.prod:
 	pipenv lock --requirements > requirements.txt
-	docker-compose build --build-arg DJANGO_ENV=production
+	docker-compose build --build-arg DJANGO_ENV=production --build-arg GID=$$(id -g) --build-arg UID=$$(id -u)
 
 ## Initialization.
 docker.up.prod.no-debug.no-volume.init:
