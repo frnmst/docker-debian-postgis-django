@@ -27,6 +27,10 @@
 include ./.env
 export
 
+# Common variables.
+UID=$$(id -u)
+GID=$$(id -g)
+
 # Detect a Docker environment.
 export DOCKER_ENV_FILE=/.dockerenv
 ifneq ("$(wildcard $(DOCKER_ENV_FILE))","")
@@ -53,7 +57,7 @@ gen-requirements:
 	. ${CURDIR}/.env; pipenv lock --verbose --requirements --dev >> requirements.txt
 
 docker.build.dev: gen-requirements
-	docker-compose build --build-arg DJANGO_ENV=development --build-arg GID=$$(id -g) --build-arg UID=$$(id -u)
+	docker-compose build --build-arg DJANGO_ENV=development --build-arg GID=$(GID) --build-arg UID=$(UID)
 
 ## Initialization.
 docker.up.dev.debug.no-volume.init: docker.rm
@@ -210,12 +214,8 @@ migrate:
 serve-dev:
 	$(COMMAND_PREFIX) python3 manage.py runserver 0.0.0.0:$(SERVE_DEV_PORT)
 
-# TODO
-# Docker
-# serve-production:
-#	DEBUG="False" uwsgi --chdir=${CURDIR} --module=$(PROJECT_NAME).wsgi:application --env DJANGO_SETTINGS_MODULE=$(PROJECT_NAME).settings --master --pidfile=/run/project-master.pid --processes=5 --harakiri=20 --max-requests=5000 --vacuum --http=0.0.0.0:3050 --check-static ${CURDIR}
 serve-production:
-	$(COMMAND_PREFIX) uwsgi --chdir=${CURDIR} --module=$(PACKAGE_NAME).wsgi:application --env DJANGO_SETTINGS_MODULE=$(PACKAGE_NAME).settings --master --pidfile=/tmp/project-master.pid --http=0.0.0.0:3050 --processes=5 --uid=1019 --gid=1019 --post-buffering --harakiri=20 --max-requests=5000 --vacuum --enable-threads --check-static ${CURDIR}
+	$(COMMAND_PREFIX) uwsgi uwsgi.ini
 
 check:
 	$(COMMAND_PREFIX) python3 manage.py check --fail-level INFO

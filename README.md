@@ -16,7 +16,9 @@ An image to be used for the first stage of Django projects that use PostGIS and 
       - [Build via git](#build-via-git)
     - [Dockerfile](#dockerfile)
     - [Continuous integration](#continuous-integration)
-    - [The Makefile](#the-makefile)
+    - [Other files](#other-files)
+      - [Makefile](#makefile)
+      - [uwsgi.ini](#uwsgiini)
       - [Variables](#variables)
   - [Dependencies](#dependencies)
     - [Dockerfile](#dockerfile-1)
@@ -128,16 +130,29 @@ Warning: The `SECRET_SETTINGS.py` file is replaced by `SECRET_SETTINGS.dist.py` 
 
 See also https://stackoverflow.com/a/49669361
 
-### The Makefile
+### Other files
 
-You can import `Makefile.dist` in a project to use all setup operations without typing them manually.
+You can import these files in a project to:
+
+- use all setup operations without typing them manually
+- run uwsgi
+
 [django-futils](https://software.franco.net.eu.org/frnmst/django-futils) for example uses this method.
 
-Run this manually or create a download script called in your project:
+Run these manually or create a download script called in your project:
+
+#### Makefile
 
 ```
 curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/Makefile.dist --output Makefile \
     && [ "$(sha512sum Makefile | awk '{print $1}')" = '262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf' ] && echo "OK" || rm Makefile
+```
+
+#### uwsgi.ini
+
+```
+curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/uwsgi.ini.dist --output uwsgi.ini \
+    && [ "$(sha512sum uwsgi.ini | awk '{print $1}')" = '435c1346a0f7c8a622b0825801cea33f243fafd692c0ec3b3f2a2affd57b49ef520484b84784d918095cf4123d087d66cb159efd331b3978290263dcdb5e82d1' ] && echo "OK" || rm uwsgi.ini
 ```
 
 #### Variables

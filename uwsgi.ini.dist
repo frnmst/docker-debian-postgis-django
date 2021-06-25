@@ -1,0 +1,53 @@
+[uwsgi]
+processes = 6
+threads = 2
+chdir = $(CURDIR)
+module = $(PACKAGE_NAME).wsgi:application
+env = DJANGO_SETTINGS_MODULE=$(PACKAGE_NAME).settings
+master = True
+pidfile = /tmp/$(PACKAGE_NAME)-project-master.pid
+http = 0.0.0.0:3050
+uid = $(UID)
+gid = $(GID)
+post-buffering = True
+harakiri = 20
+max-requests = 60
+vacuum = True
+enable-threads = True
+check-static = $(CURDIR)
+check-static = $(CURDIR)/data/prod
+disable-logging = True
+cpu-affinity = 1
+
+; a cache for css (20k per-item is more than enough)
+cache2 = name=stylesheets,items=1024,blocksize=20000
+
+; a cache for js (20k per-item is more than enough)
+cache2 = name=javascripts,items=2048,blocksize=200000
+
+; a cache for img (20k per-item is more than enough)
+cache2 = name=svgs,items=1024,blocksize=20000
+
+; a cache for img (20k per-item is more than enough)
+cache2 = name=htmls,items=1024,blocksize=20000
+
+; load the mime types engine
+mime-file = /etc/mime.types
+
+; at each request ending with .css check it in the cache
+route = \.css$ cache:key=${REQUEST_URI},name=stylesheets,content_type=text/css
+
+; at each request ending with .js check it in the cache
+route = \.js$ cache:key=${REQUEST_URI},name=javascripts,content_type=application/javascript,mime=1
+
+; at each request ending with .svg check it in the cache
+route = \.svg$ cache:key=${REQUEST_URI},name=svgs,content_type=image/svg+xml,mime=1
+
+; at each request ending with .html check it in the cache
+route = \.html$ cache:key=${REQUEST_URI},name=htmls
+
+; store
+route = \.css$ cachestore:key=${REQUEST_URI},name=stylesheets,expires=3600
+route = \.js$ cachestore:key=${REQUEST_URI},name=javascripts,expires=3600
+route = \.html$ cachestore:key=${REQUEST_URI},name=htmls
+route = \.svg$ cachestore:key=${REQUEST_URI},name=svgs,expires=3600
