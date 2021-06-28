@@ -56,7 +56,7 @@ rm -rf requirements.txt
 export SAVED_PATH=${PATH}
 export PATH=~/.bin:.
 
-${CP} SECRET_SETTINGS.dist.py SECRET_SETTINGS.py
+${CP} SECRET_SETTINGS.py.dist SECRET_SETTINGS.py
 ${CP} env.dist .env
 ${PYTHON3} -m venv --clear --without-pip "${PYENV_HOME}"
 source "${PYENV_HOME}"/bin/activate
