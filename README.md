@@ -119,7 +119,7 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '0cc49d2c482d91a22bc2ed424d26ce62a7d4d25350713264dc00e228e37daaa61b51cc639c35a03db87fa30b6af472047c00e62363e6f0a4c8907285888dcb2b' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf"'
+    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '0cc49d2c482d91a22bc2ed424d26ce62a7d4d25350713264dc00e228e37daaa61b51cc639c35a03db87fa30b6af472047c00e62363e6f0a4c8907285888dcb2b' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "debade1b990821c02064c49b0f767b59ac024779435235c21a40478849498c29d96477826a0a2af32b0b9a1f68fb9eec4e92bc780ef06bd3da64928d010e9b92"'
 
     curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = '0cc49d2c482d91a22bc2ed424d26ce62a7d4d25350713264dc00e228e37daaa61b51cc639c35a03db87fa30b6af472047c00e62363e6f0a4c8907285888dcb2b' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf"'
 
@@ -145,7 +145,7 @@ Run these manually or create a download script called in your project:
 
 ```
 curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/Makefile.dist --output Makefile \
-    && [ "$(sha512sum Makefile | awk '{print $1}')" = '262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf' ] && echo "OK" || rm Makefile
+    && [ "$(sha512sum Makefile | awk '{print $1}')" = 'debade1b990821c02064c49b0f767b59ac024779435235c21a40478849498c29d96477826a0a2af32b0b9a1f68fb9eec4e92bc780ef06bd3da64928d010e9b92' ] && echo "OK" || rm Makefile
 ```
 
 #### uwsgi.ini
