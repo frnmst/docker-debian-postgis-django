@@ -119,9 +119,15 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "debade1b990821c02064c49b0f767b59ac024779435235c21a40478849498c29d96477826a0a2af32b0b9a1f68fb9eec4e92bc780ef06bd3da64928d010e9b92"'
+    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh \
+        && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] \
+        && chmod 700 ./ci.sh \
+        && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "debade1b990821c02064c49b0f767b59ac024779435235c21a40478849498c29d96477826a0a2af32b0b9a1f68fb9eec4e92bc780ef06bd3da64928d010e9b92" "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/uwsgi.ini.dist" "435c1346a0f7c8a622b0825801cea33f243fafd692c0ec3b3f2a2affd57b49ef520484b84784d918095cf4123d087d66cb159efd331b3978290263dcdb5e82d1"'
 
-    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] && chmod 700 ./ci.sh && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf"'
+    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh \
+        && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] \
+        && chmod 700 ./ci.sh \
+        && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "262eaed350bc6766a1505745e2663bf5a61906aaf8702a3a5812d98e9de148c447e4744ed0ea70ef8e6fbcc04749c9bcc596d669cb3cb6df2bf74235704af7bf" "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/uwsgi.ini.dist" "435c1346a0f7c8a622b0825801cea33f243fafd692c0ec3b3f2a2affd57b49ef520484b84784d918095cf4123d087d66cb159efd331b3978290263dcdb5e82d1"'
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
