@@ -60,7 +60,7 @@ These are the tested images:
 2. run `docker-compose build  --build-arg GID=$(id -g) --build-arg UID=$(id -u)`
 3. add this to the docker compose file of your project:
 
-```
+```yaml
 services:
     dependencies:
         image: docker_debian_postgis_django
@@ -80,7 +80,7 @@ services:
 1. add this to the docker compose file of your project, where `${VERSION}` may correspond to
    a git tag such as `0.0.3`:
 
-```
+```yaml
 services:
 
     dependencies:
@@ -119,15 +119,19 @@ The `./ci.sh` script is intendend to get reproducible build for development and 
 
 Select one of the two environments:
 
-    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh \
-        && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] \
-        && chmod 700 ./ci.sh \
-        && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "164d8ae410226209726050c32c3dc298638aa1fd9111e21de509efb0b96ff7b74ae94ab897d46933c8cf060af4e6cac7f65cbb22cf6475d5091fdb06916350b8" "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/uwsgi.ini.dist" "435c1346a0f7c8a622b0825801cea33f243fafd692c0ec3b3f2a2affd57b49ef520484b84784d918095cf4123d087d66cb159efd331b3978290263dcdb5e82d1"'
+```shell
+curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh \
+    && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] \
+    && chmod 700 ./ci.sh \
+    && env --ignore-environment ENV="development" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "164d8ae410226209726050c32c3dc298638aa1fd9111e21de509efb0b96ff7b74ae94ab897d46933c8cf060af4e6cac7f65cbb22cf6475d5091fdb06916350b8" "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/uwsgi.ini.dist" "435c1346a0f7c8a622b0825801cea33f243fafd692c0ec3b3f2a2affd57b49ef520484b84784d918095cf4123d087d66cb159efd331b3978290263dcdb5e82d1"'
+```
 
-    curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh \
-        && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] \
-        && chmod 700 ./ci.sh \
-        && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "164d8ae410226209726050c32c3dc298638aa1fd9111e21de509efb0b96ff7b74ae94ab897d46933c8cf060af4e6cac7f65cbb22cf6475d5091fdb06916350b8" "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/uwsgi.ini.dist" "435c1346a0f7c8a622b0825801cea33f243fafd692c0ec3b3f2a2affd57b49ef520484b84784d918095cf4123d087d66cb159efd331b3978290263dcdb5e82d1"'
+```shell
+curl https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/master/ci.sh --output ci.sh \
+    && [ "$(sha512sum ci.sh | awk '{print $1}')" = 'c6eab9296e83a547bbb997e5399e01cac409f7d1debedfe3a21ea31a33390b226e1093baadfaf48f190b1ef3f3fd61e226cca5c9fddc35f8d760774d2fc31108' ] \
+    && chmod 700 ./ci.sh \
+    && env --ignore-environment ENV="production" PATH=$PATH bash --noprofile --norc -c './ci.sh "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/Makefile.dist" "164d8ae410226209726050c32c3dc298638aa1fd9111e21de509efb0b96ff7b74ae94ab897d46933c8cf060af4e6cac7f65cbb22cf6475d5091fdb06916350b8" "https://software.franco.net.eu.org/frnmst/docker-debian-postgis-django/raw/branch/dev/uwsgi.ini.dist" "435c1346a0f7c8a622b0825801cea33f243fafd692c0ec3b3f2a2affd57b49ef520484b84784d918095cf4123d087d66cb159efd331b3978290263dcdb5e82d1"'
+```
 
 You can use `Jenkins <https://jenkins.io>`_ for these tasks.
 In this case place the command under the *Build* -> *Execute shell* section of the project's configuration.
