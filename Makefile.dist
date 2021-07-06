@@ -131,7 +131,7 @@ docker.up.prod.db:
 docker.init.dev: remove-migrations migrations migrate collectstatic syncdb docker.gen-superuser.dev initialize-translations test doc compile-translations check
 
 docker.gen-superuser.dev:
-	echo "from $(AUTH_MODULE).models import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpassword')" | python3 manage.py shell
+	echo "from $(AUTH_MODULE).$(MODELS_MODULE) import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpassword')" | python3 manage.py shell
 
 docker.serve.dev: serve-dev
 
