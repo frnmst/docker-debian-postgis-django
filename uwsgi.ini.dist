@@ -6,7 +6,7 @@ module = $(PACKAGE_NAME).wsgi:application
 env = DJANGO_SETTINGS_MODULE=$(PACKAGE_NAME).settings
 master = True
 pidfile = /tmp/$(PACKAGE_NAME)-project-master.pid
-http = 0.0.0.0:3050
+http = $(HTTP_LISTENING_PROD_ADDRESS):$(SERVE_PROD_PORT)
 uid = $(UID)
 gid = $(GID)
 post-buffering = True
