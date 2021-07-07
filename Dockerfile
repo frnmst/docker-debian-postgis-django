@@ -25,7 +25,9 @@ FROM python:3.9.4-buster AS base
 ARG UID
 ARG GID
 
-RUN groupadd -g $GID -r django && useradd --create-home -s /bin/bash --home-dir /code -u $UID -r -g django django && mkdir /code/django
+RUN groupadd -g $GID -r django \
+    && useradd --create-home -s /bin/bash --home-dir /code -u $UID -r -g django django \
+    && mkdir /code/django
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -36,5 +38,8 @@ RUN apt-get update \
         postgis=2.5.1+dfsg-1 \
     && rm -rf /var/cache/apt /var/lib/apt/lists/*
 
-RUN chmod 700 /code && chown django:django /code && chown django:django /code/django
+RUN chmod 700 /code \
+    && chown django:django /code \
+    && chown django:django /code/django
+
 COPY --chown=django:django ./utils/ /code/django/utils
