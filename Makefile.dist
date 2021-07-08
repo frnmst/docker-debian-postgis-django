@@ -133,12 +133,12 @@ docker.init.dev: remove-migrations migrations migrate collectstatic syncdb docke
 docker.gen-superuser.dev:
 	echo "from $(AUTH_MODULE).$(MODELS_MODULE) import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpassword')" | python3 manage.py shell
 
-docker.serve.dev: serve-dev
+docker.serve.dev: compile-translations serve-dev
 
 # Production.
 docker.init.prod: migrations migrate collectstatic docker.gen-superuser.dev syncdb initialize-translations compile-translations check
 
-docker.serve.prod: collectstatic serve-production
+docker.serve.prod: collectstatic compile-translations serve-production
 
 ###################
 # Bare metal only #
