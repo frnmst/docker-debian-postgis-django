@@ -26,19 +26,17 @@ ARG UID
 ARG GID
 
 RUN groupadd -g $GID -r django \
-    && useradd --create-home -s /bin/bash --home-dir /code -u $UID -r -g django django \
-    && mkdir /code/django
-
-RUN apt-get update \
+    && useradd -l --create-home -s /bin/bash --home-dir /code -u $UID -r -g django django \
+    && mkdir /code/django \
+    && apt-get update \
     && apt-get install -y --no-install-recommends \
         graphviz=2.40.1-6+deb10u1 \
         libgraphviz-dev=2.40.1-6+deb10u1 \
         gettext=0.19.8.1-9 \
         postgresql-client=11+200+deb10u4 \
         postgis=2.5.1+dfsg-1 \
-    && rm -rf /var/cache/apt /var/lib/apt/lists/*
-
-RUN chmod 700 /code \
+    && rm -rf /var/cache/apt /var/lib/apt/lists/* \
+    && chmod 700 /code \
     && chown django:django /code \
     && chown django:django /code/django
 
