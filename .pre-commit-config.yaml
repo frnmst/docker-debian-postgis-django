@@ -12,3 +12,8 @@ repos:
    hooks:
    -    id: md-toc
         args: [-p, 'github', '-l6']  # CLI options
+
+- repo: https://github.com/hadolint/hadolint
+  rev: v2.6.0
+  hooks:
+  -     id: hadolint-docker
